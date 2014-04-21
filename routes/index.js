@@ -29,12 +29,19 @@ exports.gitlab = function(req, res){
 
   slack = new Slack(config.webhook, config.domain);
 
+  body = req.body;
+
+  data = {
+    username: "gitlab",
+    channel: req.query.channel || "general",
+    text: "code updated by " + body.user_name + " ,  <" + body.commits[0].url + "|" + comments[0].message + ">"
+  }
+
   slack.webhook({
-    username: data.user || "webhookbot",
+    username: data.username || "webhookbot",
     channel: data.channel || "#general",
     text: data.text || "",
-    // attachments: data.attachments,
-    // icon_url: data.icon_url
+    icon_url: "http://www.gravatar.com/avatar/b9b1205a8b7a87ce0135cbcaa9848163?size=40&default=https://cdn.uservoice.com/pkg/admin/icons/user_40-7a960fe4b882cdb283360295191002d7.png"
   }, function(err, response) {
     console.log(response);
   });
