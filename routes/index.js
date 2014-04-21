@@ -3,11 +3,15 @@
  * GET home page.
  */
 
-var Slack = require('node-slack');
-var slack = new Slack("hpp-hiiir","VTBCYNneXdoNRZjIH5QPYkFj");
+var Slack = require('slack-node');
+var config = require("../config");
 
-domain = "--your-slack-subdomain--";
-webhookToken = "--your-slack-webhook--";
+exports.index = function(req, res) {
+  res.send({
+    status: "ok",
+    message: "it is main page"
+  })
+}
 
 exports.redmine = function(req, res){
 
@@ -16,7 +20,7 @@ exports.redmine = function(req, res){
   console.log("get")
   console.log(req.query);
 
-  slack = new Slack(webhookToken, domain);
+  slack = new Slack(config.webhook, config.domain);
 
   slack.webhook({
     channel: "#general",
