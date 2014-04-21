@@ -28,7 +28,6 @@ exports.gitlab = function(req, res){
   });
 
   slack = new Slack(config.webhook, config.domain);
-  console.log(body.payload)
 
   slack.webhook({
     username: data.user || "webhookbot",
