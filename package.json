@@ -1,5 +1,5 @@
 {
-  "name": "application-name",
+  "name": "slack-middle-server",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -8,6 +8,7 @@
   "dependencies": {
     "express": "3.4.2",
     "jade": "*",
-    "node-slack": "0.0.3"
+    "node-slack": "0.0.3",
+    "slack-node": "0.0.3"
   }
 }
