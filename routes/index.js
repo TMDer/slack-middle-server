@@ -34,7 +34,7 @@ exports.gitlab = function(req, res){
   data = {
     username: "gitlab",
     channel: req.query.channel || "general",
-    text: "code updated by " + body.user_name + " ,  <" + body.commits[0].url + "|" + comments[0].message + ">"
+    text: "code updated by " + body.user_name + " ,  <" + body.commits[0].url + "|" + body.comments[0].message + ">"
   }
 
   slack.webhook({
