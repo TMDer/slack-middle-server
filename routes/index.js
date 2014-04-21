@@ -28,11 +28,14 @@ exports.redmine = function(req, res){
   });
 
   slack = new Slack(config.webhook, config.domain);
+  data = JSON.parse(body.payload);
 
   slack.webhook({
-    channel: "#general",
-    username: "webhookbot",
-    text: body.payload
+    username: data.user || "webhookbot",
+    channel: data.channel || "#general",
+    text: data.text || "",
+    attachments: data.attachments,
+    icon_url: data.icon_url
   }, function(err, response) {
     console.log(response);
   });
