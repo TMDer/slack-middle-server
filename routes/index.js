@@ -20,20 +20,21 @@ exports.redmine = function(req, res){
   console.log("get")
   console.log(req.query);
 
+  res.send({
+    status: 200,
+    message: "it is webhook"
+  });
+  
   slack = new Slack(config.webhook, config.domain);
 
   slack.webhook({
     channel: "#general",
     username: "webhookbot",
-    text: "This is posted to #general and comes from a bot named webhookbot."
+    text: body.payload
   }, function(err, response) {
     console.log(response);
   });
 
-  res.send({
-    status: 200,
-    message: "it is webhook"
-  });
-};
 
+};
 
