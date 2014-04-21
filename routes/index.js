@@ -28,14 +28,14 @@ exports.gitlab = function(req, res){
   });
 
   slack = new Slack(config.webhook, config.domain);
-  data = JSON.parse(body.payload);
+  console.log(body.payload)
 
   slack.webhook({
     username: data.user || "webhookbot",
     channel: data.channel || "#general",
     text: data.text || "",
-    attachments: data.attachments,
-    icon_url: data.icon_url
+    // attachments: data.attachments,
+    // icon_url: data.icon_url
   }, function(err, response) {
     console.log(response);
   });
