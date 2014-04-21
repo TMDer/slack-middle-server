@@ -15,6 +15,8 @@ exports.index = function(req, res) {
 
 exports.redmine = function(req, res){
 
+  body = req.body || {};
+  
   console.log("body");
   console.log(req.body);
   console.log("get")
@@ -24,7 +26,7 @@ exports.redmine = function(req, res){
     status: 200,
     message: "it is webhook"
   });
-  
+
   slack = new Slack(config.webhook, config.domain);
 
   slack.webhook({
