@@ -89,8 +89,11 @@ exports.redmine = function(req, res){
     status: 200,
     message: "it is webhook"
   });
+
+  data = JSON.parse(body.payload);
   
   if (redmine.userhook) {
+    var text = data.text:
     var passhook = false;
     var users = redmine.users;
     
@@ -106,7 +109,7 @@ exports.redmine = function(req, res){
     }
   }
 
-  data = JSON.parse(body.payload);
+  
 
   slack.webhook({
     username: data.user || "webhookbot",
