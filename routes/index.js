@@ -89,24 +89,23 @@ exports.redmine = function(req, res){
     status: 200,
     message: "it is webhook"
   });
-
   
-  if (redmine.redminehook) {
-    var text = data.text;
+  if (redmine.userhook) {
     var passhook = false;
-    for (user in users) {
-      if (text.indexOf(user) > -1) {
+    var users = redmine.users;
+    
+    for (key in users) {
+      if (text.indexOf(users[key]) > -1) {
         passhook = true;
         break;
       }
     }
 
-    if ( ! passhook) {
-      console.log("pass hook")
+    if (passhook == false) {
       return;
     }
   }
-  
+
   data = JSON.parse(body.payload);
 
   slack.webhook({
