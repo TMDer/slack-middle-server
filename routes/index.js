@@ -6,6 +6,8 @@
 var Slack = require('slack-node');
 var config = require("../config");
 
+var slack = new Slack(config.webhook, config.domain);
+
 exports.index = function(req, res) {
   res.send({
     status: "ok",
@@ -21,8 +23,6 @@ exports.gitlab = function(req, res){
     status: 200,
     message: "gitlab, it is webhook"
   });
-
-  slack = new Slack(config.webhook, config.domain);
 
   body = req.body;
 
@@ -62,7 +62,7 @@ exports.jenkins = function(req, res){
   console.log(req.query);
   console.log("body");
   console.log(req.body);
-  
+
   data = {
     text: "Build a task: " + title,
     user: body.username,
@@ -106,8 +106,7 @@ exports.redmine = function(req, res){
       return;
     }
   }
-
-  slack = new Slack(config.webhook, config.domain);
+  
   data = JSON.parse(body.payload);
 
   slack.webhook({
