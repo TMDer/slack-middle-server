@@ -47,16 +47,38 @@ exports.gitlab = function(req, res){
 exports.jenkins = function(req, res){
   var body = req.body || {};
   var redmine = config.redmine;
+  var title = req.query.buildName || "";
 
   res.send({
     status: 200,
     message: "it is webhook"
   });
 
+  if ( ! req.query.buildName) {
+    return;
+  }
+
   console.log("query");
   console.log(req.query);
   console.log("body");
   console.log(req.body);
+
+  https://slack.global.ssl.fastly.net/12837/img/services/jenkins-ci_32.png
+  data = {
+    text: "Build a task: " + title,
+    user: body.username,
+    icon_url: body.icon_url
+  };
+
+  slack.webhook({
+    username: data.user || "jenkins",
+    channel: req.query.channel || "#general",
+    text: data.text || "",
+    attachments: { text: 'Built time is' + new Date()},
+    icon_url: data.icon_url || "https://slack.global.ssl.fastly.net/12837/img/services/jenkins-ci_32.png"
+  }, function(err, response) {
+    console.log(response);
+  });
 };
 
 exports.redmine = function(req, res){
