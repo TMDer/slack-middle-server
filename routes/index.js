@@ -93,7 +93,7 @@ exports.redmine = function(req, res){
   data = JSON.parse(body.payload);
   
   if (redmine.userhook) {
-    var text = data.text:
+    var text = data.text;
     var passhook = false;
     var users = redmine.users;
     
