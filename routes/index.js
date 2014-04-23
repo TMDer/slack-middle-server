@@ -62,8 +62,7 @@ exports.jenkins = function(req, res){
   console.log(req.query);
   console.log("body");
   console.log(req.body);
-
-  https://slack.global.ssl.fastly.net/12837/img/services/jenkins-ci_32.png
+  
   data = {
     text: "Build a task: " + title,
     user: body.username,
