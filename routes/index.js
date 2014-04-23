@@ -51,7 +51,8 @@ exports.gitlab = function(req, res){
 
 exports.redmine = function(req, res){
 
-  body = req.body || {};
+  var body = req.body || {};
+  var redmine = config.redmine;
   
   console.log("body");
   console.log(req.body);
@@ -62,6 +63,23 @@ exports.redmine = function(req, res){
     status: 200,
     message: "it is webhook"
   });
+
+  
+  if (redmine.redminehook) {
+    var text = data.text;
+    var passhook = false;
+    for (user in users) {
+      if (text.indexOf(user) > -1) {
+        passhook = true;
+        break;
+      }
+    }
+
+    if ( ! passhook) {
+      console.log("pass hook")
+      return;
+    }
+  }
 
   slack = new Slack(config.webhook, config.domain);
   data = JSON.parse(body.payload);
