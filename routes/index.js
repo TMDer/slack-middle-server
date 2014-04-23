@@ -15,12 +15,7 @@ exports.index = function(req, res) {
 
 exports.gitlab = function(req, res){
 
-  body = req.body || {};
-  
-  console.log("body");
-  console.log(req.body);
-  console.log("get")
-  console.log(req.query);
+  var body = req.body || {};
 
   res.send({
     status: 200,
@@ -49,15 +44,25 @@ exports.gitlab = function(req, res){
 
 };
 
+exports.jenkins = function(req, res){
+  var body = req.body || {};
+  var redmine = config.redmine;
+
+  res.send({
+    status: 200,
+    message: "it is webhook"
+  });
+
+  console.log("query");
+  console.log(req.query);
+  console.log("body");
+  console.log(req.body);
+};
+
 exports.redmine = function(req, res){
 
   var body = req.body || {};
   var redmine = config.redmine;
-  
-  console.log("body");
-  console.log(req.body);
-  console.log("get")
-  console.log(req.query);
 
   res.send({
     status: 200,
@@ -93,7 +98,6 @@ exports.redmine = function(req, res){
   }, function(err, response) {
     console.log(response);
   });
-
 
 };
 

@@ -30,6 +30,7 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.all('/redmine', routes.redmine);
 app.all('/gitlab', routes.gitlab);
+app.all('/jenkins', routes.jenkins);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
