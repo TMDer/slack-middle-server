@@ -27,14 +27,14 @@ exports.gitlab = function(req, res){
   body = req.body;
 
   data = {
-    username: "gitlab",
-    channel: req.query.channel || "#general",
-    text: "code updated by " + body.user_name + " ,  <" + body.commits[0].url + "|" + body.commits[0].message + ">"
+    username: "gitlab-PR",
+    channel: req.query.channel || "#pull-request",
+    text: "code updated by " + body.user.username + " ,  <" + object_attributes.last_commit.url + "|" + object_attributes.last_commit.url + ">"
   }
 
   slack.webhook({
-    username: data.username || "webhookbot",
-    channel: data.channel || "#general",
+    username: data.username || "gitlab-PR",
+    channel: data.channel || "#pull-request",
     text: data.text || "",
     icon_url: "http://www.gravatar.com/avatar/b9b1205a8b7a87ce0135cbcaa9848163?size=40&default=https://cdn.uservoice.com/pkg/admin/icons/user_40-7a960fe4b882cdb283360295191002d7.png"
   }, function(err, response) {
